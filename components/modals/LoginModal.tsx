@@ -42,6 +42,7 @@ const LoginModal = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
                 disabled={isLoading}
+                type="email"
             />
 
             <Input
@@ -49,6 +50,7 @@ const LoginModal = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
                 disabled={isLoading}
+                type="password"
             />
         </div>
     )
