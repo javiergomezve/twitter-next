@@ -1,8 +1,9 @@
 import {useCallback, useState} from "react";
-import Input from "@/components/Input";
-import Modal from "@/components/Modal";
+
 import useLoginModal from "@/hooks/useLoginModal";
 import useRegisterModal from "@/hooks/useRegisterModal";
+import Input from "@/components/Input";
+import Modal from "@/components/Modal";
 
 
 const RegisterModal = () => {
@@ -28,6 +29,13 @@ const RegisterModal = () => {
             setIsLoading(false)
         }
     }, [registerModal])
+
+    const onToggle = useCallback(() => {
+        if (isLoading) return
+
+        registerModal.onClose()
+        loginModal.onOpen()
+    }, [isLoading, registerModal, loginModal])
 
     const bodyContent= (
         <div className="flex flex-col gap-4">
@@ -61,6 +69,20 @@ const RegisterModal = () => {
         </div>
     )
 
+    const footerContent = (
+        <div className="text-neutral-400 text-center mt-4">
+            <p>
+                Already have an account?{' '}
+                <span
+                    className="text-white cursor-pointer hover:underline"
+                    onClick={onToggle}
+                >
+                    Sing in
+                </span>
+            </p>
+        </div>
+    )
+
     return (
         <Modal
             disabled={isLoading}
@@ -70,6 +92,7 @@ const RegisterModal = () => {
             onClose={registerModal.onClose}
             onSubmit={onSubmit}
             body={bodyContent}
+            footer={footerContent}
         />
     )
 }
