@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import useUser from "@/hooks/useUser";
 import UserHero from "@/components/users/UserHero";
 import UserBio from "@/components/users/UserBio";
+import PostsFeed from "@/components/posts/PostsFeed";
 
 const UserView = () => {
     const router = useRouter()
@@ -27,6 +28,7 @@ const UserView = () => {
             <Header label={fetchedUser?.name} showBackArrow/>
             <UserHero userId={userId as string}/>
             <UserBio userId={userId as string}/>
+            <PostsFeed userId={userId as string}/>
         </Fragment>
     )
 }
